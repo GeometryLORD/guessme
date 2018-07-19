@@ -1,56 +1,18 @@
 import random
-
-
-def tryAgain(number):
-    guess = raw_input("-")
-    try:
-        guess = int(guess)
-        checkNum(guess, number)
-    except:
-        print "that's not a number!"
-        tryAgain(number)
-
-def correct():
-    print "You're Correct!\n"
-    playAgain()
-
-def playAgain():
-    again = raw_input("Play Again? y/n    ")
-    if (again == "y"):
-        start()
-    elif (again == "n"):
-        print "awww okay :("
+random_number=random.randint(1, 10)
+turns=0
+while turns<=5:
+  guess=raw_input("Guess a number from 1 to 10! ")
+  if guess.isnumeric and len(guess)>0:
+    if guess==str(random_number):
+      print "You win!"
+      break
     else:
-        print "Invalid Response"
-        playAgain()
-        
-def tooHigh(number):
-    print "Too high!\n"
-    tryAgain(number)
-    
-def tooLow(number):
-    print "Too low!\n"
-    tryAgain(number)
-    
-def checkNum(guess, number):
-    if (guess == number):
-        correct()
-    elif (guess > number):
-        tooHigh(number)
-    else:
-        tooLow(number)
-
-def start():
-    number = (random.randint(0,100))
-    guess = raw_input("Try to guess the number I'm thinking of! ")
-    try:
-        guess = int(guess)
-    except:
-        print "that's not a number!"
-        start()
-        
-    checkNum(guess, number)
-
-
-start()
-
+      print "Try again!"
+      turns+=1
+    if turns==5:
+      print "You lose!"
+      break
+  else:
+    print "Try again!"
+    turns+=1
